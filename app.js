@@ -34,7 +34,7 @@ async function writeData(data) {
  *       type: object
  *       properties:
  *         id:
- *           type: integer
+ *           type: string
  *           description: The ID of the item.
  *         name:
  *           type: string
@@ -72,7 +72,7 @@ app.get('/items', async (_req, res) => {
  *         name: id
  *         required: true
  *         schema:
- *           type: integer
+ *           type: string
  *         description: The ID of the item.
  *     responses:
  *       200:
@@ -85,7 +85,7 @@ app.get('/items', async (_req, res) => {
  *         description: Item not found.
  */
 app.get('/items/:id', async (req, res) => {
-  const id = parseInt(req.params.id);
+  const id = String(req.params.id);
   const data = await readData();
   const item = data.find(item => item.id === id);
   if (item) {
@@ -141,7 +141,7 @@ const swaggerOptions = {
           type: 'object',
           properties: {
             id: {
-              type: 'integer',
+              type: 'string',
               description: 'The ID of the item.',
             },
             name: {
